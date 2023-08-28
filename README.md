@@ -13,7 +13,7 @@
 
 - PHP: v8.1.x
 - Laravel: v10.x
-- MySQL: v8.0.33
+- MySQL: v8.0
 
 ### Add Composer Libraries
 
@@ -23,7 +23,8 @@
 - [reliese/laravel * Model作成ライブラリ](https://github.com/reliese/laravel)
 - [barryvdh/laravel-ide-helper * IDEヘルパー](https://github.com/barryvdh/laravel-ide-helper)
 - [barryvdh/laravel-debugbar * デバッカー](https://github.com/barryvdh/laravel-debugbar)
-- Write Add modules continue ...
+- [laravel/sail * Docker開発環境](https://readouble.com/laravel/10.x/ja/sail.html)
+- [bensampo/laravel-enum * 列挙型](https://github.com/BenSampo/laravel-enum)
 
 ### Add Node Modules
 
@@ -75,15 +76,15 @@ Write Add modules continue ...
 │   ├── php-cs-fixer/           # Code formatting tool location
 │
 ├── docker-compose.yml          # Configuration file to define and run multi-container Docker applications
-├── Dockerfile                  # File to define the steps to build a Docker image
 ├── .php-cs-fixer.dist.php      # Configuration file for php-cs-fixer
 ├── phpstan.neon                # Configuration file for phpstan
 ├── tsconfig.json               # Configuration file for TypeScript
+├── vite.config.js              # Configuration file for Vite
 ```
 
 # DB Structure
 
-Write Add modules continue ...
+Write Add continue ...
 
 # Participation in Development
 
@@ -102,25 +103,47 @@ cp .env.example .env
 ### `.env`
 
 ```sh
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=ecommerce
+DB_USERNAME=admin
+DB_PASSWORD=password
 
+MAIL_MAILER=smtp
+MAIL_HOST=mailpit
+MAIL_PORT=1025
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS="hello@example.com"
+MAIL_FROM_NAME="${APP_NAME}"
+
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_DEFAULT_REGION=ap-northeast-1
+AWS_BUCKET=
+AWS_USE_PATH_STYLE_ENDPOINT=false
 ```
+
+### `Laravel Sail`
 
 #### Build everything:
 
 ```sh
-docker compose up --build
+sail up -d
 ```
 
 #### Access to Docker application containers
 
 ```sh
-docker-compose run --rm web bash
+sail shell
 ```
 
 #### Stopping everything:
 
 ```sh
-docker compose down
+sail stop
 ```
 
 You can start things up again with `docker compose up` and unlike the first
@@ -148,4 +171,10 @@ setting file - phpstan.neon
 
 # generate base file if error base_file
 ./vendor/bin/phpstan analyse --generate-baseline
+```
+
+### `Asset file compile`
+```sh
+# run
+sail npm run dev
 ```
