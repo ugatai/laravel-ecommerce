@@ -84,7 +84,11 @@ Write Add modules continue ...
 
 # DB Structure
 
-Write Add continue ...
+<p align="center">
+    <a href="https://ugawa-public.s3.ap-northeast-1.amazonaws.com/images/ecommerce.drawio.png">
+        <img src="https://ugawa-public.s3.ap-northeast-1.amazonaws.com/images/ecommerce.drawio.png" alt="ER">
+    </a>
+</p>
 
 # Participation in Development
 
@@ -174,6 +178,7 @@ setting file - phpstan.neon
 ```
 
 ### `Asset file compile`
+
 ```sh
 # run
 sail npm run dev
