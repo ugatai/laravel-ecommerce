@@ -25,10 +25,13 @@
 - [barryvdh/laravel-debugbar * デバッカー](https://github.com/barryvdh/laravel-debugbar)
 - [laravel/sail * Docker開発環境](https://readouble.com/laravel/10.x/ja/sail.html)
 - [bensampo/laravel-enum * 列挙型](https://github.com/BenSampo/laravel-enum)
+- [laravel/breeze * ログイン認証系](https://github.com/laravel/breeze)
 
 ### Add Node Modules
 
-Write Add modules continue ...
+- [react v18.2.0]()
+- [react-dom v18.2.0]()
+- [tailwindcss v3.2.1]()
 
 # Directory Structure
 
