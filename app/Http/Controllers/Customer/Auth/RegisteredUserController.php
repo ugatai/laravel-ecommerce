@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Customer\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
@@ -23,7 +23,7 @@ final class RegisteredUserController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('Auth/Register');
+        return Inertia::render('Customer/Auth/Register');
     }
 
     /**
@@ -35,7 +35,7 @@ final class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:'.Customer::class,
+            'email' => 'required|string|email|max:255|unique:' . Customer::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -47,8 +47,8 @@ final class RegisteredUserController extends Controller
 
         event(new Registered($customer));
 
-        Auth::login($customer);
+        Auth::guard('customer')->login($customer);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(RouteServiceProvider::CUSTOMER_HOME);
     }
 }

@@ -16,16 +16,17 @@ final class Authenticate extends Middleware
      */
     protected function redirectTo(Request $request): ?string
     {
-        if (!$request->expectsJson()) {
+        if (! $request->expectsJson()) {
             if (Route::is('admin.*')) {
                 return route('admin.login');
             }
             if (Route::is('owner.*')) {
                 return route('owner.login');
             }
-            return route('login');
+            return route('customer.login');
         }
-
-        throw new NotFoundHttpException();
+        throw new NotFoundHttpException(
+            '[Error]: 不正なリクエストが検出されました。 | ClassName*' . __CLASS__
+        );
     }
 }

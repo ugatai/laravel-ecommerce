@@ -28,10 +28,12 @@ final class RedirectIfAuthenticated
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
                 return match ($guard) {
-                    'customer' => redirect(RouteServiceProvider::HOME),
+                    'customer' => redirect(RouteServiceProvider::CUSTOMER_HOME),
                     'owner' => redirect(RouteServiceProvider::OWNER_HOME),
                     'admin' => redirect(RouteServiceProvider::ADMIN_HOME),
-                    default => throw new NotFoundHttpException()
+                    default => throw new NotFoundHttpException(
+                        '[Error]: 不正な認証リクエストが検出されました。 | Guard*' . $guard
+                    )
                 };
             }
         }

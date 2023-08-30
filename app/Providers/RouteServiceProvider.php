@@ -15,11 +15,11 @@ final class RouteServiceProvider extends ServiceProvider
     /**
      * The path to your application's "home" route.
      *
-     * Typically, users are redirected here after authentication.
+     * Typically, customers are redirected here after authentication.
      *
      * @var string
      */
-    public const HOME = '/dashboard';
+    public const CUSTOMER_HOME = '/customer/dashboard';
 
     /**
      * The path to your application's "home" route.
