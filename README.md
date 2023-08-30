@@ -29,6 +29,8 @@
 
 ### Add Node Modules
 
+- [@inertiajs/react]()
+- [@vitejs/plugin-react]()
 - [react v18.2.0]()
 - [react-dom v18.2.0]()
 - [tailwindcss v3.2.1]()
