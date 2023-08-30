@@ -22,6 +22,24 @@ final class RouteServiceProvider extends ServiceProvider
     public const HOME = '/dashboard';
 
     /**
+     * The path to your application's "home" route.
+     *
+     * Typically, admins are redirected here after authentication.
+     *
+     * @var string
+     */
+    public const ADMIN_HOME = '/admin/dashboard';
+
+    /**
+     * The path to your application's "home" route.
+     *
+     * Typically, owners are redirected here after authentication.
+     *
+     * @var string
+     */
+    public const OWNER_HOME = '/owner/dashboard';
+
+    /**
      * Define your route model bindings, pattern filters, and other route configuration.
      */
     public function boot(): void
@@ -37,6 +55,12 @@ final class RouteServiceProvider extends ServiceProvider
 
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
+
+            Route::prefix('admin')
+                ->name('admin.')
+                ->middleware('web')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/admin.php'));
         });
     }
 }

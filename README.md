@@ -71,8 +71,9 @@
 │      
 ├── routes/                     # Place each router here
 │   ├── api.php                 # Routing for external use
-│   ├── frontend.php            # Frontend routing
-│   ├── backend.php             # Backend routing
+│   ├── admin.php               # Admin User routing
+│   ├── owner.php               # Owner User routing
+│   ├── web.php                 # Customer User routing
 │
 ├── tests/
 │   ├── Feature/                # Tests for single controllers
