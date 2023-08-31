@@ -9,13 +9,17 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 final class RedirectIfAuthenticated
 {
     /**
      * Handle an incoming request.
      *
-     * @param Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response) $next
+     * @param Request $request
+     * @param Closure $next
+     * @param string ...$guards
+     * @return Response
      */
     public function handle(Request $request, Closure $next, string ...$guards): Response
     {
@@ -23,7 +27,14 @@ final class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                return match ($guard) {
+                    'customer' => redirect(RouteServiceProvider::CUSTOMER_HOME),
+                    'owner' => redirect(RouteServiceProvider::OWNER_HOME),
+                    'admin' => redirect(RouteServiceProvider::ADMIN_HOME),
+                    default => throw new NotFoundHttpException(
+                        '[Error]: 不正な認証リクエストが検出されました。 | Guard*' . $guard
+                    )
+                };
             }
         }
 
