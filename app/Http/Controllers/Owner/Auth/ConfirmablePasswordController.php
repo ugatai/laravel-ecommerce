@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\Admin\Auth;
+namespace App\Http\Controllers\Owner\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
@@ -20,7 +20,7 @@ final class ConfirmablePasswordController extends Controller
      */
     public function show(): Response
     {
-        return Inertia::render('Admin/Auth/ConfirmPassword');
+        return Inertia::render('Owner/Auth/ConfirmPassword');
     }
 
     /**
@@ -28,7 +28,7 @@ final class ConfirmablePasswordController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        if (! Auth::guard('admin')->validate([
+        if (! Auth::guard('owner')->validate([
             'email' => $request->user()->email,
             'password' => $request->password,
         ])) {
@@ -39,6 +39,6 @@ final class ConfirmablePasswordController extends Controller
 
         $request->session()->put('auth.password_confirmed_at', time());
 
-        return redirect()->intended(RouteServiceProvider::ADMIN_HOME);
+        return redirect()->intended(RouteServiceProvider::OWNER_HOME);
     }
 }

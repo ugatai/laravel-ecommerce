@@ -1,5 +1,7 @@
 <p align="center">
-    <a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a>
+    <a href="https://laravel.com" target="_blank">
+        <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo">
+    </a>
 </p>
 
 <p align="center">
@@ -11,8 +13,12 @@
 
 # Laravel Ecommerce Application
 
-- PHP: v8.1.x
-- Laravel: v10.x
+### Environment
+
+- PHP: v8.1.22
+- Laravel: v10.20.0
+- Node: v18.17.1
+- React: v18.2.0
 - MySQL: v8.0
 
 ### Add Composer Libraries
@@ -31,9 +37,9 @@
 
 - [@inertiajs/react]()
 - [@vitejs/plugin-react]()
-- [react v18.2.0]()
-- [react-dom v18.2.0]()
-- [tailwindcss v3.2.1]()
+- [react * JSフレームワーク]()
+- [react-dom * React DOM]()
+- [tailwindcss * CSSフレームワーク]()
 
 # Directory Structure
 
@@ -65,7 +71,7 @@
 │
 ├── resources/                  # Store templates and translation files
 │   ├── css/                    # CSS files
-│   ├── js/                     # TS (TypeScript) files
+│   ├── js/                     # JSX Component files
 │   ├── lang/                   # Translation files
 │   ├── view/                   # Templates
 │      
@@ -112,12 +118,12 @@ cp .env.example .env
 
 ### `.env`
 
-```sh
+```dotenv
 DB_CONNECTION=mysql
 DB_HOST=mysql
 DB_PORT=3306
-DB_DATABASE=ecommerce
-DB_USERNAME=admin
+DB_DATABASE=laravel
+DB_USERNAME=sail
 DB_PASSWORD=password
 
 MAIL_MAILER=smtp
@@ -134,6 +140,9 @@ AWS_SECRET_ACCESS_KEY=
 AWS_DEFAULT_REGION=ap-northeast-1
 AWS_BUCKET=
 AWS_USE_PATH_STYLE_ENDPOINT=false
+
+STRIPE_PUBLIC_KEY=
+STRIPE_SECRET_KEY=
 ```
 
 ### `Laravel Sail`
@@ -183,9 +192,28 @@ setting file - phpstan.neon
 ./vendor/bin/phpstan analyse --generate-baseline
 ```
 
-### `Asset file compile`
+### `Compile JSX and Sass files`
 
 ```sh
 # run
 sail npm run dev
+```
+
+### `Login Application`
+
+```
+#admin
+url : 'project/admin/login'
+user : admin@admin.admin
+pass : password
+
+#owner
+url : 'project/owner/login'
+user : owner@owner.owner
+pass : password
+
+#customer
+url : 'project/customer/login'
+user : customer@customer.customer
+pass : password
 ```
