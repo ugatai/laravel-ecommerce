@@ -23,25 +23,31 @@ export default function Header({auth}) {
                     </div>
                     <div className="flex items-center justify-end w-full">
                         {auth.user ? (
-                            <Link
-                                href={route('customer.dashboard')}
-                                className="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                            >
-                                Dashboard
-                            </Link>
+                            <>
+                                <Link
+                                    href={route('customer.dashboard')}
+                                    className="font-semibold text-gray-600 mr-4">
+                                    <i className="fa-solid fa-cart-shopping mr-2"></i>Cart
+                                </Link>
+
+                                <Link
+                                    href={route('customer.logout')}
+                                    method="post"
+                                    className="font-semibold text-gray-600 mr-2">
+                                    <i className="fa-solid fa-right-from-bracket mr-2"></i>Log out
+                                </Link>
+                            </>
                         ) : (
                             <>
                                 <Link
                                     href={route('customer.login')}
-                                    className="font-semibold text-gray-600"
-                                >
+                                    className="font-semibold text-gray-600 mr-4">
                                     <i className="fa-solid fa-user-pen mr-2"></i>Log in
                                 </Link>
 
                                 <Link
                                     href={route('customer.register')}
-                                    className="ml-4 font-semibold text-gray-600"
-                                >
+                                    className="font-semibold text-gray-600">
                                     <i className="fa-solid fa-user-plus mr-2"></i>Register
                                 </Link>
                             </>
@@ -84,7 +90,8 @@ export default function Header({auth}) {
                         </span>
                 <input
                     className="w-full border rounded-md pl-10 pr-4 py-2 focus:border-blue-500 focus:outline-none focus:shadow-outline"
-                    type="text" placeholder="Search"/>
+                    type="text"
+                    placeholder="Search"/>
             </div>
         </header>
     )

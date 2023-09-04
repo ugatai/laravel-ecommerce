@@ -35,11 +35,11 @@
 
 ### Add Node Modules
 
-- [@inertiajs/react]()
-- [@vitejs/plugin-react]()
-- [react * JSフレームワーク]()
-- [react-dom * React DOM]()
-- [tailwindcss * CSSフレームワーク]()
+- [@inertiajs/react * inertia/reactライブラリ](https://www.npmjs.com/package/@inertiajs/react)
+- [@vitejs/plugin-react * vitejs/reactライブラリ](https://www.npmjs.com/package/@vitejs/plugin-react)
+- [react * JSライブラリー](https://react.dev/)
+- [react-dom * react dom ライブラリ](https://legacy.reactjs.org/docs/react-dom.html)
+- [tailwindcss * CSSライブラリ](https://tailwindcss.com/)
 
 # Directory Structure
 
