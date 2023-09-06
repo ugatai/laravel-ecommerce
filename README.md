@@ -35,11 +35,12 @@
 
 ### Add Node Modules
 
-- [@inertiajs/react]()
-- [@vitejs/plugin-react]()
-- [react * JSフレームワーク]()
-- [react-dom * React DOM]()
-- [tailwindcss * CSSフレームワーク]()
+- [@inertiajs/react * inertia/reactライブラリ](https://www.npmjs.com/package/@inertiajs/react)
+- [@vitejs/plugin-react * vitejs/reactライブラリ](https://www.npmjs.com/package/@vitejs/plugin-react)
+- [react * JSライブラリー](https://react.dev/)
+- [react-dom * react dom ライブラリ](https://legacy.reactjs.org/docs/react-dom.html)
+- [tailwindcss * CSSライブラリ](https://tailwindcss.com/)
+- [uuid * uuid作成ライブラリ](https://www.npmjs.com/package/uuid)
 
 # Directory Structure
 
@@ -71,7 +72,10 @@
 │
 ├── resources/                  # Store templates and translation files
 │   ├── css/                    # CSS files
-│   ├── js/                     # JSX Component files
+│   ├── js/                     # JSX files
+│   │   ├── Components/         # JSX Components files
+│   │   ├── Layouts/            # JSX Layouts files
+│   │   ├── Pages/              # JSX Pages files
 │   ├── lang/                   # Translation files
 │   ├── view/                   # Templates
 │      
@@ -97,8 +101,8 @@
 # DB Structure
 
 <p align="center">
-    <a href="https://ugawa-public.s3.ap-northeast-1.amazonaws.com/images/ecommerce.drawio.png">
-        <img src="https://ugawa-public.s3.ap-northeast-1.amazonaws.com/images/ecommerce.drawio.png" alt="ER">
+    <a href="https://ugawa-public.s3.ap-northeast-1.amazonaws.com/images/ecommerce/ecommerce.drawio.png">
+        <img src="https://ugawa-public.s3.ap-northeast-1.amazonaws.com/images/ecommerce/ecommerce.drawio.png" alt="ER">
     </a>
 </p>
 

@@ -1,8 +1,10 @@
 import {Link} from '@inertiajs/react';
 
 export default function Header({auth}) {
+    const appName = import.meta.env.VITE_APP_NAME;
+
     return (
-        <header>
+        <header className="bg-gradient-to-r from-stone-100 to-white py-5">
             <div className="container mx-auto px-6 py-3">
                 <div className="flex items-center justify-between">
                     <div className="hidden w-full text-gray-600 md:flex md:items-center">
@@ -16,31 +18,37 @@ export default function Header({auth}) {
                         </svg>
                         <span className="mx-1 text-sm">Ja</span>
                     </div>
-                    <div className="w-full text-gray-700 md:text-center text-2xl font-semibold">
-                        Brand
+                    <div className="w-full text-gray-700 md:text-center text-2xl font-bold">
+                        {appName}
                     </div>
                     <div className="flex items-center justify-end w-full">
                         {auth.user ? (
-                            <Link
-                                href={route('customer.dashboard')}
-                                className="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                            >
-                                Dashboard
-                            </Link>
+                            <>
+                                <Link
+                                    href={route('customer.dashboard')}
+                                    className="font-semibold text-gray-600 mr-4">
+                                    <i className="fa-solid fa-cart-shopping mr-2"></i>Cart
+                                </Link>
+
+                                <Link
+                                    href={route('customer.logout')}
+                                    method="post"
+                                    className="font-semibold text-gray-600 mr-2">
+                                    <i className="fa-solid fa-right-from-bracket mr-2"></i>Log out
+                                </Link>
+                            </>
                         ) : (
                             <>
                                 <Link
                                     href={route('customer.login')}
-                                    className="font-semibold text-gray-600 "
-                                >
-                                    Log in
+                                    className="font-semibold text-gray-600 mr-4">
+                                    <i className="fa-solid fa-user-pen mr-2"></i>Log in
                                 </Link>
 
                                 <Link
                                     href={route('customer.register')}
-                                    className="ml-4 font-semibold text-gray-600"
-                                >
-                                    Register
+                                    className="font-semibold text-gray-600">
+                                    <i className="fa-solid fa-user-plus mr-2"></i>Register
                                 </Link>
                             </>
                         )}
@@ -60,11 +68,16 @@ export default function Header({auth}) {
             </div>
             <nav className="sm:flex sm:justify-center sm:items-center mt-4">
                 <div className="flex flex-col sm:flex-row">
-                    <a className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#">Home</a>
-                    <a className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#">Shop</a>
-                    <a className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#">Categories</a>
-                    <a className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#">Contact</a>
-                    <a className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#">About</a>
+                    <a className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#"><i
+                        className="fa-solid fa-house mr-2"></i>Home</a>
+                    <a className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#"><i
+                        className="fa-solid fa-shop mr-2"></i>Shop</a>
+                    <a className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#"><i
+                        className="fa-solid fa-bottle-droplet mr-2"></i>Categories</a>
+                    <a className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#"><i
+                        className="fa-solid fa-calendar-days mr-2"></i>Reserve</a>
+                    <a className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#"><i
+                        className="fa-solid fa-envelope mr-2"></i>Contact</a>
                 </div>
             </nav>
             <div className="relative mt-6 max-w-lg mx-auto">
@@ -77,7 +90,8 @@ export default function Header({auth}) {
                         </span>
                 <input
                     className="w-full border rounded-md pl-10 pr-4 py-2 focus:border-blue-500 focus:outline-none focus:shadow-outline"
-                    type="text" placeholder="Search"/>
+                    type="text"
+                    placeholder="Search"/>
             </div>
         </header>
     )

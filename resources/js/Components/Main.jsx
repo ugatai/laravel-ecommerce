@@ -1,6 +1,6 @@
 export default function Main() {
     return (
-        <main className="my-8">
+        <main className="bg-gradient-to-r from-stone-100 to-white py-5">
             <div className="container mx-auto px-6">
                 <div className="h-64 rounded-md overflow-hidden bg-cover bg-center"
                      style={{'backgroundImage': 'url(\'https://images.unsplash.com/photo-1577655197620-704858b270ac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1280&q=144\')'}}
