@@ -1,14 +1,21 @@
-import { useEffect } from 'react';
-import Checkbox from '@/Components/Checkbox';
+import {useEffect} from 'react';
+import {Head, useForm} from '@inertiajs/react';
+
 import GuestLayout from '@/Layouts/GuestLayout';
+import Checkbox from '@/Components/Checkbox';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
-import { Head, Link, useForm } from '@inertiajs/react';
+import {LoginOrRegisterButton} from "@/Components/Button/index.jsx";
 
-export default function Login({ status, canResetPassword }) {
-    const { data, setData, post, processing, errors, reset } = useForm({
+/**
+ * @param status
+ * @param canResetPassword
+ * @returns {JSX.Element}
+ * @constructor
+ */
+export default function Login({status, canResetPassword}) {
+    const {data, setData, post, errors, reset} = useForm({
         email: '',
         password: '',
         remember: false,
@@ -27,69 +34,88 @@ export default function Login({ status, canResetPassword }) {
     };
 
     return (
-        <GuestLayout>
-            <Head title="Log in" />
-
+        <GuestLayout style="bg-slate-100">
+            <Head title="Admin Log in"/>
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
 
-            <form onSubmit={submit}>
-                <div>
-                    <InputLabel htmlFor="email" value="Email" />
+            <div className="text-gray-500 p-3 text-center font-bold">
+                Admin <i className="fa-solid fa-user-astronaut"></i>
+            </div>
 
+            <form onSubmit={submit}>
+                <div className="px-5 py-7">
+                    <InputLabel htmlFor="email"
+                                value="E-mail"
+                                className="font-semibold text-sm text-gray-600 pb-1 block"
+                    />
                     <TextInput
                         id="email"
                         type="email"
                         name="email"
                         value={data.email}
-                        className="mt-1 block w-full"
+                        className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
                         autoComplete="username"
                         isFocused={true}
+                        placeholder="example@example.com"
                         onChange={(e) => setData('email', e.target.value)}
                     />
+                    <InputError message={errors.email} className="mb-2"/>
 
-                    <InputError message={errors.email} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
-
+                    <InputLabel htmlFor="password"
+                                value="Password"
+                                className="font-semibold text-sm text-gray-600 pb-1 block"
+                    />
                     <TextInput
                         id="password"
                         type="password"
                         name="password"
                         value={data.password}
-                        className="mt-1 block w-full"
+                        className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
                         autoComplete="current-password"
+                        placeholder="Your Password"
                         onChange={(e) => setData('password', e.target.value)}
                     />
+                    <InputError message={errors.password} className="mb-2"/>
 
-                    <InputError message={errors.password} className="mt-2" />
+                    <div className="block mb-3">
+                        <label className="flex items-center">
+                            <Checkbox
+                                name="remember"
+                                checked={data.remember}
+                                onChange={(e) => setData('remember', e.target.checked)}
+                            />
+                            <span className="ml-2 text-sm text-gray-600 font-semibold">Remember me</span>
+                        </label>
+                    </div>
+
+                    <LoginOrRegisterButton color="bg-slate" value="Login"/>
                 </div>
 
-                <div className="block mt-4">
-                    <label className="flex items-center">
-                        <Checkbox
-                            name="remember"
-                            checked={data.remember}
-                            onChange={(e) => setData('remember', e.target.checked)}
-                        />
-                        <span className="ml-2 text-sm text-gray-600">Remember me</span>
-                    </label>
-                </div>
-
-                <div className="flex items-center justify-end mt-4">
-                    {canResetPassword && (
-                        <Link
-                            href={route('admin.password.request')}
-                            className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        >
-                            Forgot your password?
-                        </Link>
-                    )}
-
-                    <PrimaryButton className="ml-4" disabled={processing}>
-                        Log in
-                    </PrimaryButton>
+                <div className="py-2">
+                    <div className="grid grid-cols-2 gap-1">
+                        <div className="text-center sm:text-left whitespace-nowrap">
+                            {canResetPassword && <button
+                                type="button"
+                                className="transition duration-200 mx-5 px-5 py-4 cursor-pointer font-normal text-sm rounded-lg
+                                text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-200 focus:ring-2
+                                focus:ring-gray-400 focus:ring-opacity-50 ring-inset"
+                            >
+                                <i className="fa-solid fa-unlock-keyhole"></i>
+                                <a className="inline-block ml-1" href={route('admin.password.request')}>Forgot
+                                    Password</a>
+                            </button>}
+                        </div>
+                        <div className="text-center sm:text-right  whitespace-nowrap">
+                            <button type="button"
+                                    className="transition duration-200 mx-5 px-5 py-4 cursor-pointer font-normal text-sm
+                                    rounded-lg text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-200
+                                    focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 ring-inset"
+                            >
+                                <i className="fa-solid fa-circle-question"></i>
+                                <span className="inline-block ml-1">Help</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </form>
         </GuestLayout>

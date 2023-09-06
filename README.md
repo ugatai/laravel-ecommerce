@@ -40,6 +40,7 @@
 - [react * JSライブラリー](https://react.dev/)
 - [react-dom * react dom ライブラリ](https://legacy.reactjs.org/docs/react-dom.html)
 - [tailwindcss * CSSライブラリ](https://tailwindcss.com/)
+- [uuid * uuid作成ライブラリ](https://www.npmjs.com/package/uuid)
 
 # Directory Structure
 
@@ -71,7 +72,10 @@
 │
 ├── resources/                  # Store templates and translation files
 │   ├── css/                    # CSS files
-│   ├── js/                     # JSX Component files
+│   ├── js/                     # JSX files
+│   │   ├── Components/         # JSX Components files
+│   │   ├── Layouts/            # JSX Layouts files
+│   │   ├── Pages/              # JSX Pages files
 │   ├── lang/                   # Translation files
 │   ├── view/                   # Templates
 │      
