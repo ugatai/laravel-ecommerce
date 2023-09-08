@@ -32,6 +32,7 @@
 - [laravel/sail * Docker開発環境](https://readouble.com/laravel/10.x/ja/sail.html)
 - [bensampo/laravel-enum * 列挙型](https://github.com/BenSampo/laravel-enum)
 - [laravel/breeze * ログイン認証系](https://github.com/laravel/breeze)
+- [brianium/paratest * 並列テスト](https://packagist.org/packages/brianium/paratest)
 
 ### Add Node Modules
 
@@ -97,6 +98,10 @@
 ├── tsconfig.json               # Configuration file for TypeScript
 ├── vite.config.js              # Configuration file for Vite
 ```
+
+# Infrastructure
+
+in preparation...
 
 # DB Structure
 
@@ -172,6 +177,15 @@ sail stop
 You can start things up again with `docker compose up` and unlike the first
 time it should only take seconds.
 
+### `Installing Dependent Packages`
+
+```sh
+sail composer install
+sail npm install
+
+sail php artisan php migrate:refresh --seed
+```
+
 ### `php-cs-fixer`
 
 setting file - .php-cs-fixer.dist.php
@@ -203,21 +217,17 @@ setting file - phpstan.neon
 sail npm run dev
 ```
 
-### `Login Application`
+# PHP Unit Tests
 
-```
-#admin
-url : 'project/admin/login'
-user : admin@admin.admin
-pass : password
+#### run php unit tests:
 
-#owner
-url : 'project/owner/login'
-user : owner@owner.owner
-pass : password
+```sh
+# keep coverage 70.5%
+sail php artisan test --coverage --min=70.5 --env=testing
 
-#customer
-url : 'project/customer/login'
-user : customer@customer.customer
-pass : password
+# parallel
+sail php artisan test --parallel --processes=3
+
+# profile
+sail php artisan test --profile
 ```
