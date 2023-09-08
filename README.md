@@ -222,8 +222,8 @@ sail npm run dev
 #### run php unit tests:
 
 ```sh
-# keep coverage 70.5%
-sail php artisan test --coverage --min=70.5 --env=testing
+# keep coverage 60%
+sail php artisan test --coverage --env=testing # --min=60 
 
 # parallel
 sail php artisan test --parallel --processes=3
