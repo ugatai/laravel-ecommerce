@@ -91,5 +91,5 @@ Route::prefix('expired-owners')->middleware(['auth:admin'])
     ->group(function () {
         Route::delete('destroy/{id}', \App\Http\Actions\Admin\ExpiredOwner\ExpiredOwnerDestroyAction::class)->name('expired_owner.destroy');
         Route::get('index', \App\Http\Actions\Admin\ExpiredOwner\ExpiredOwnerIndexAction::class)->name('expired_owner.index');
-        Route::get('restore/{id}', \App\Http\Actions\Admin\ExpiredOwner\ExpiredOwnerRestoreAction::class)->name('expired_owner.restore');
+        Route::post('restore/{id}', \App\Http\Actions\Admin\ExpiredOwner\ExpiredOwnerRestoreAction::class)->name('expired_owner.restore');
     });

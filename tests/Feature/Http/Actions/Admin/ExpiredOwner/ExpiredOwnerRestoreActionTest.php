@@ -30,7 +30,7 @@ class ExpiredOwnerRestoreActionTest extends TestCase
         Artisan::call('db:seed', ['--class' => 'ExpiredOwnerSeeder']);
 
         $this->admin = Admin::query()->first();
-        $this->expiredOwner = Owner::query()->first();
+        $this->expiredOwner = Owner::onlyTrashed()->first();
     }
 
     #[Test]
@@ -41,7 +41,7 @@ class ExpiredOwnerRestoreActionTest extends TestCase
     public function test_expired_owner_restore_action(): void
     {
         $response = $this->actingAs($this->admin, 'admin')
-            ->delete(route('admin.expired_owner.restore', ['id' => $this->expiredOwner->id]));
+            ->post(route('admin.expired_owner.restore', ['id' => $this->expiredOwner->id]));
         $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.owner.index'));
         $response->assertSessionHas('info', 'Expired owner restore successfully!');
@@ -61,7 +61,7 @@ class ExpiredOwnerRestoreActionTest extends TestCase
         $nonExistentId = 9999;
 
         $response = $this->actingAs($this->admin, 'admin')
-            ->delete(route('admin.expired_owner.restore', ['id' => $nonExistentId]));
+            ->post(route('admin.expired_owner.restore', ['id' => $nonExistentId]));
         $response->assertStatus(404);
     }
 }

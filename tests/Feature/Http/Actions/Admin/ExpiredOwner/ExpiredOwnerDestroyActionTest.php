@@ -30,7 +30,7 @@ class ExpiredOwnerDestroyActionTest extends TestCase
         Artisan::call('db:seed', ['--class' => 'ExpiredOwnerSeeder']);
 
         $this->admin = Admin::query()->first();
-        $this->expiredOwner = Owner::query()->first();
+        $this->expiredOwner = Owner::onlyTrashed()->first();
     }
 
     #[Test]
