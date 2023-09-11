@@ -8,7 +8,7 @@ use App\Models\Admin;
 use App\Models\Owner;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
-use Inertia\Testing\Assert;
+use Inertia\Testing\AssertableInertia;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
@@ -29,8 +29,8 @@ class OwnerShowActionTest extends TestCase
         Artisan::call('db:seed', ['--class' => 'AdminSeeder']);
         Artisan::call('db:seed', ['--class' => 'OwnerSeeder']);
 
-        $this->admin = Admin::query()->find(1);
-        $this->owner = Owner::query()->find(1);
+        $this->admin = Admin::query()->first();
+        $this->owner = Owner::query()->first();
     }
 
     #[Test]
@@ -42,8 +42,21 @@ class OwnerShowActionTest extends TestCase
         $response = $this->actingAs($this->admin, 'admin')
             ->get(route('admin.owner.show', ['id' => $this->owner->id]));
 
-        $response->assertInertia(fn(Assert $page) => $page->component('Admin/Owner/Show')
+        $response->assertInertia(fn(AssertableInertia $page) => $page->component('Admin/Owner/Show')
             ->has('owner')
         );
+    }
+
+    #[Test]
+    /**
+     * @return void
+     */
+    public function test_owner_show_page_with_non_existent_id(): void
+    {
+        $nonExistentId = 9999;
+
+        $response = $this->actingAs($this->admin, 'admin')
+            ->get(route('admin.owner.show', ['id' => $nonExistentId]));
+        $response->assertStatus(404);
     }
 }

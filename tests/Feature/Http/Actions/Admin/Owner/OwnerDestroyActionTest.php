@@ -29,8 +29,8 @@ class OwnerDestroyActionTest extends TestCase
         Artisan::call('db:seed', ['--class' => 'AdminSeeder']);
         Artisan::call('db:seed', ['--class' => 'OwnerSeeder']);
 
-        $this->admin = Admin::query()->find(1);
-        $this->owner = Owner::query()->find(1);
+        $this->admin = Admin::query()->first();
+        $this->owner = Owner::query()->first();
     }
 
     #[Test]
@@ -46,6 +46,18 @@ class OwnerDestroyActionTest extends TestCase
         $response->assertRedirect(route('admin.owner.index'));
 
         $this->assertSoftDeleted($this->owner);
-        $this->assertModelMissing($this->owner);
+    }
+
+    #[Test]
+    /**
+     * @return void
+     */
+    public function test_owner_delete_action_with_non_existent_id(): void
+    {
+        $nonExistentId = 9999;
+
+        $response = $this->actingAs($this->admin, 'admin')
+            ->delete(route('admin.owner.destroy', ['id' => $nonExistentId]));
+        $response->assertStatus(404);
     }
 }

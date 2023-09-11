@@ -7,7 +7,7 @@ namespace Tests\Feature\Http\Actions\Admin\Owner;
 use App\Models\Admin;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
-use Inertia\Testing\Assert;
+use Inertia\Testing\AssertableInertia;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
@@ -26,7 +26,7 @@ class OwnerIndexActionTest extends TestCase
 
         Artisan::call('db:seed', ['--class' => 'AdminSeeder']);
 
-        $this->admin = Admin::query()->find(1);
+        $this->admin = Admin::query()->first();
     }
 
     #[Test]
@@ -38,7 +38,7 @@ class OwnerIndexActionTest extends TestCase
         $response = $this->actingAs($this->admin, 'admin')
             ->get(route('admin.owner.index'));
 
-        $response->assertInertia(fn(Assert $page) => $page->component('Admin/Owner/Index')
+        $response->assertInertia(fn(AssertableInertia $page) => $page->component('Admin/Owner/Index')
             ->has('owners')
         );
     }

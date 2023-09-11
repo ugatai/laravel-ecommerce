@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace App\Http\Actions\Admin\Owner;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Admin\Owner\OwnerStoreRequest;
+use App\Models\Owner;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * Class OwnerStoreAction
@@ -15,11 +18,18 @@ use Illuminate\Http\Request;
 final class OwnerStoreAction extends Controller
 {
     /**
-     * @param Request $request
-     * @return void
+     * @param OwnerStoreRequest $request
+     * @return RedirectResponse
      */
-    public function __invoke(Request $request): void
+    public function __invoke(OwnerStoreRequest $request): RedirectResponse
     {
+        $attributes = $request->validated();
 
+        $hashedPass = Hash::make($attributes['password']);
+        $attributes['password'] = $hashedPass;
+
+        Owner::query()->create($attributes);
+
+        return redirect()->route('admin.owner.index');
     }
 }

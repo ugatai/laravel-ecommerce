@@ -29,8 +29,8 @@ class OwnerUpdateActionTest extends TestCase
         Artisan::call('db:seed', ['--class' => 'AdminSeeder']);
         Artisan::call('db:seed', ['--class' => 'OwnerSeeder']);
 
-        $this->admin = Admin::query()->find(1);
-        $this->owner = Owner::query()->find(1);
+        $this->admin = Admin::query()->first();
+        $this->owner = Owner::query()->first();
     }
 
     #[Test]

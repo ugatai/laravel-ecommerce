@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Tests\Feature\Http\Actions\Admin\Owner;
 
 use App\Models\Admin;
+use App\Models\Owner;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Hash;
 use JsonException;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
@@ -26,7 +28,7 @@ class OwnerStoreActionTest extends TestCase
 
         Artisan::call('db:seed', ['--class' => 'AdminSeeder']);
 
-        $this->admin = Admin::query()->find(1);
+        $this->admin = Admin::query()->first();
     }
 
     #[Test]
@@ -39,7 +41,8 @@ class OwnerStoreActionTest extends TestCase
         $data = [
             'name' => 'test',
             'email' => 'test@test.test',
-            'password' => 'password'
+            'password' => 'password',
+            'password_confirmation' => 'password'
         ];
 
         $response = $this->actingAs($this->admin, 'admin')
@@ -51,5 +54,9 @@ class OwnerStoreActionTest extends TestCase
             'name' => 'test',
             'email' => 'test@test.test'
         ]);
+
+        /** @var Owner|null $owner */
+        $owner = Owner::query()->where('email', 'test@test.test')->first();
+        $this->assertTrue(Hash::check('password', $owner->password));
     }
 }
