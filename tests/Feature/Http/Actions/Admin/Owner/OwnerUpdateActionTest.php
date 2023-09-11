@@ -50,6 +50,7 @@ class OwnerUpdateActionTest extends TestCase
             ->put(route('admin.owner.update'), $data);
         $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.owner.edit', ['id' => $this->owner->id]));
+        $response->assertSessionHas('info', 'Owner updated successfully!');
 
         $this->assertDatabaseHas('owners', $data);
     }

@@ -49,6 +49,7 @@ class OwnerStoreActionTest extends TestCase
             ->post(route('admin.owner.store'), $data);
         $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.owner.index'));
+        $response->assertSessionHas('info', 'Owner created successfully!');
 
         $this->assertDatabaseHas('owners', [
             'name' => 'test',

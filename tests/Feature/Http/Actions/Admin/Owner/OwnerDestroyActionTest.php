@@ -44,6 +44,7 @@ class OwnerDestroyActionTest extends TestCase
             ->delete(route('admin.owner.destroy', ['id' => $this->owner->id]));
         $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.owner.index'));
+        $response->assertSessionHas('alert', 'Owner delete successfully!');
 
         $this->assertSoftDeleted($this->owner);
     }

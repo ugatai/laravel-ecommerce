@@ -30,6 +30,7 @@ final class OwnerStoreAction extends Controller
 
         Owner::query()->create($attributes);
 
-        return redirect()->route('admin.owner.index');
+        return redirect()->route('admin.owner.index')
+            ->with('info', 'Owner created successfully!');
     }
 }

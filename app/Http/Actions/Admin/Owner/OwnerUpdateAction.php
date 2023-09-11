@@ -35,6 +35,7 @@ final class OwnerUpdateAction extends Controller
         $owner->fill($request->validated())
             ->save();
 
-        return redirect()->route('admin.owner.edit', ['id' => $id]);
+        return redirect()->route('admin.owner.edit', ['id' => $id])
+            ->with('info', 'Owner updated successfully!');
     }
 }

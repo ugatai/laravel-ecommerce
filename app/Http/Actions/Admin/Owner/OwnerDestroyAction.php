@@ -33,6 +33,7 @@ final class OwnerDestroyAction extends Controller
 
         $owner->delete();
 
-        return redirect()->route('admin.owner.index');
+        return redirect()->route('admin.owner.index')
+            ->with('alert', 'Owner delete successfully!');
     }
 }
