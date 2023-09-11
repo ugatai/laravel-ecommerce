@@ -8,6 +8,7 @@ parameters:
         - database
         - resources/views
         - routes
+        - tests
     excludePaths:
         - ./routes/console.php
     level: 6

@@ -61,7 +61,17 @@ Route::middleware('auth:admin')->group(function () {
         ->name('logout');
 });
 
-
 Route::middleware(['auth:admin'])->get('/dashboard', function () {
     return Inertia::render('Admin/Dashboard');
 })->name('dashboard');
+
+Route::prefix('owners')->middleware(['auth:admin'])
+    ->group(function () {
+        Route::get('create', \App\Http\Actions\Admin\Owner\OwnerCreateAction::class)->name('owner.create');
+        Route::delete('destroy/{id}', \App\Http\Actions\Admin\Owner\OwnerDestroyAction::class)->name('owner.destroy');
+        Route::get('edit/{id}', \App\Http\Actions\Admin\Owner\OwnerEditAction::class)->name('owner.edit');
+        Route::get('index', \App\Http\Actions\Admin\Owner\OwnerIndexAction::class)->name('owner.index');
+        Route::get('show/{id}', \App\Http\Actions\Admin\Owner\OwnerShowAction::class)->name('owner.show');
+        Route::post('store', \App\Http\Actions\Admin\Owner\OwnerStoreAction::class)->name('owner.store');
+        Route::put('update', \App\Http\Actions\Admin\Owner\OwnerUpdateAction::class)->name('owner.update');
+    });

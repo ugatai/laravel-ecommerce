@@ -11,15 +11,15 @@ export const AdminSidebar = () => {
     const menus = [
         {
             id: 1,
-            title: 'Admin',
-            items: [{uuid: uuidv4(), action: 'List', route: 'admin.dashboard'}, {
+            title: 'Owner',
+            items: [{uuid: uuidv4(), action: 'List', route: 'admin.owner.index'}, {
                 uuid: uuidv4(),
                 action: 'Create',
-                route: 'admin.dashboard'
+                route: 'admin.owner.create'
             }]
         },
-        {id: 2, title: 'Contact', items: [{uuid: uuidv4(), action: 'List', route: 'admin.dashboard'}]},
-        {id: 3, title: 'Setting', items: [{uuid: uuidv4(), action: 'Edit', route: 'admin.dashboard'}]}
+        {id: 2, title: 'Expired Owner', items: [{uuid: uuidv4(), action: 'List', route: 'admin.dashboard'}]},
+        {id: 3, title: 'Contact', items: [{uuid: uuidv4(), action: 'List', route: 'admin.dashboard'}]}
     ];
 
     /**
@@ -28,12 +28,12 @@ export const AdminSidebar = () => {
      */
     const getTitleIcon = (title) => {
         switch (title) {
-            case 'Admin':
-                return (<i className="fa-solid fa-user-astronaut mr-2"></i>);
+            case 'Owner':
+                return (<i className="fa-solid fa-user-tie mr-2"></i>);
+            case 'Expired Owner':
+                return (<i className="fa-solid fa-user-slash mr-2"></i>);
             case 'Contact':
                 return (<i className="fa-solid fa-envelope mr-2"></i>);
-            case 'Setting':
-                return (<i className="fa-solid fa-user-gear mr-2"></i>);
             default:
                 return (<i className="fa-solid fa-house　mr-2"></i>);
         }
