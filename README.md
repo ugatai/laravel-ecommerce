@@ -34,6 +34,7 @@
 - [laravel/breeze * ログイン認証系](https://github.com/laravel/breeze)
 - [brianium/paratest * 並列テスト](https://packagist.org/packages/brianium/paratest)
 - [league/flysystem-aws-s3-v3 * s3ライブラリー](https://packagist.org/packages/league/flysystem-aws-s3-v3)
+- [intervention/image * 画像リサイズライブラリー](https://image.intervention.io/v2)
 
 ### Add Node Modules
 
