@@ -14,6 +14,9 @@ use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+// ---------------------------------------------------------------------------------------------------------------------
+// システム管理者認証系 ルート定義
+// ---------------------------------------------------------------------------------------------------------------------
 Route::middleware('guest:admin')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');
@@ -37,7 +40,6 @@ Route::middleware('guest:admin')->group(function () {
     Route::post('reset-password', [NewPasswordController::class, 'store'])
         ->name('password.store');
 });
-
 Route::middleware('auth:admin')->group(function () {
     Route::get('verify-email', EmailVerificationPromptController::class)
         ->name('verification.notice');
@@ -61,10 +63,16 @@ Route::middleware('auth:admin')->group(function () {
         ->name('logout');
 });
 
+// ---------------------------------------------------------------------------------------------------------------------
+// 管理者ダッシュボード画面
+// ---------------------------------------------------------------------------------------------------------------------
 Route::middleware(['auth:admin'])->get('/dashboard', function () {
     return Inertia::render('Admin/Dashboard');
 })->name('dashboard');
 
+// ---------------------------------------------------------------------------------------------------------------------
+// 店舗オーナー ルート定義
+// ---------------------------------------------------------------------------------------------------------------------
 Route::prefix('owners')->middleware(['auth:admin'])
     ->group(function () {
         Route::get('create', \App\Http\Actions\Admin\Owner\OwnerCreateAction::class)->name('owner.create');
@@ -74,4 +82,14 @@ Route::prefix('owners')->middleware(['auth:admin'])
         Route::get('show/{id}', \App\Http\Actions\Admin\Owner\OwnerShowAction::class)->name('owner.show');
         Route::post('store', \App\Http\Actions\Admin\Owner\OwnerStoreAction::class)->name('owner.store');
         Route::put('update', \App\Http\Actions\Admin\Owner\OwnerUpdateAction::class)->name('owner.update');
+    });
+
+// ---------------------------------------------------------------------------------------------------------------------
+// 契約切れ店舗オーナー ルート定義
+// ---------------------------------------------------------------------------------------------------------------------
+Route::prefix('expired-owners')->middleware(['auth:admin'])
+    ->group(function () {
+        Route::delete('destroy/{id}', \App\Http\Actions\Admin\ExpiredOwner\ExpiredOwnerDestroyAction::class)->name('expired_owner.destroy');
+        Route::get('index', \App\Http\Actions\Admin\ExpiredOwner\ExpiredOwnerIndexAction::class)->name('expired_owner.index');
+        Route::post('restore/{id}', \App\Http\Actions\Admin\ExpiredOwner\ExpiredOwnerRestoreAction::class)->name('expired_owner.restore');
     });
