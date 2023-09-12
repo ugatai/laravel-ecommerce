@@ -18,7 +18,7 @@ export const AdminSidebar = () => {
                 route: 'admin.owner.create'
             }]
         },
-        {id: 2, title: 'Expired Owner', items: [{uuid: uuidv4(), action: 'List', route: 'admin.dashboard'}]},
+        {id: 2, title: 'Expired Owner', items: [{uuid: uuidv4(), action: 'List', route: 'admin.expired_owner.index'}]},
         {id: 3, title: 'Contact', items: [{uuid: uuidv4(), action: 'List', route: 'admin.dashboard'}]}
     ];
 

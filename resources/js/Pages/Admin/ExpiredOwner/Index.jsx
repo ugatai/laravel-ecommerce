@@ -10,8 +10,19 @@ import AuthenticatedLayout from '@/Layouts/AdminAuthenticatedLayout';
  * @constructor
  */
 const Index = ({auth, expiredOwners}) => {
-    const {delete: destroy} = useForm({});
+    const {delete: destroy, post} = useForm({});
     const {flash} = usePage().props;
+
+
+    /**
+     * @param {MouseEvent<HTMLAnchorElement>} e
+     * @param {int} id
+     */
+    const restoreHandler = (e, id) => {
+        e.preventDefault();
+
+        post(route('admin.expired_owner.restore', {id: id}));
+    }
 
     /**
      * @param {MouseEvent<HTMLAnchorElement>} e
@@ -20,8 +31,8 @@ const Index = ({auth, expiredOwners}) => {
     const deleteHandler = (e, id) => {
         e.preventDefault();
 
-        if (window.confirm('Are you sure you want to delete this owner?')) {
-            destroy(route('admin.owner.destroy', {id: id}));
+        if (window.confirm('Are you sure you want to delete this expired owner?')) {
+            destroy(route('admin.expired_owner.destroy', {id: id}));
         }
     };
 
@@ -34,16 +45,9 @@ const Index = ({auth, expiredOwners}) => {
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <header className="border-b border-gray-100 px-5 py-4">
                             <div className="font-semibold text-gray-800">
-                                Expired Owner List<i className="fa-solid fa-user-tie ml-2"></i>
+                                Expired Owner List<i className="fa-solid fa-user-slash ml-2"></i>
                             </div>
                         </header>
-                        {flash.info &&
-                            <div className="flex bg-green-100 rounded-lg p-4 my-2 text-sm text-green-700" role="alert">
-                                <div>
-                                    <i className="fa-solid fa-circle-info mr-2"></i>
-                                    <span className="font-medium">{flash.info}</span>
-                                </div>
-                            </div>}
                         {flash.alert &&
                             <div className="flex bg-red-100 rounded-lg p-4 my-2 text-sm text-red-700" role="alert">
                                 <div>
@@ -77,9 +81,10 @@ const Index = ({auth, expiredOwners}) => {
                                         <td className="p-2 border-r">{owner.name}</td>
                                         <td className="p-2 border-r">{owner.email}</td>
                                         <td>
-                                            <a href={route('admin.owner.show', {id: owner.id})}
+                                            <a href="#"
+                                               onClick={(e) => restoreHandler(e, owner.id)}
                                                className="bg-cyan-600 p-2 text-white hover:shadow-lg text-xs font-bold mr-1 rounded">
-                                                Restore<i className="fa-solid fa-book-open ml-1"></i>
+                                                Restore<i className="fa-solid fa-rotate-left ml-1"></i>
                                             </a>
                                             <a href="#"
                                                onClick={(e) => deleteHandler(e, owner.id)}
