@@ -33,6 +33,7 @@
 - [bensampo/laravel-enum * 列挙型](https://github.com/BenSampo/laravel-enum)
 - [laravel/breeze * ログイン認証系](https://github.com/laravel/breeze)
 - [brianium/paratest * 並列テスト](https://packagist.org/packages/brianium/paratest)
+- [league/flysystem-aws-s3-v3 * s3ライブラリー](https://packagist.org/packages/league/flysystem-aws-s3-v3)
 
 ### Add Node Modules
 
@@ -146,9 +147,9 @@ MAIL_FROM_NAME="${APP_NAME}"
 
 AWS_ACCESS_KEY_ID=
 AWS_SECRET_ACCESS_KEY=
-AWS_DEFAULT_REGION=ap-northeast-1
+AWS_DEFAULT_REGION=
 AWS_BUCKET=
-AWS_USE_PATH_STYLE_ENDPOINT=false
+AWS_URL=
 
 STRIPE_PUBLIC_KEY=
 STRIPE_SECRET_KEY=
