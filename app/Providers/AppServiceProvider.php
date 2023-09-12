@@ -13,7 +13,8 @@ final class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app
+            ->singleton(\App\Services\Impl\ImageServiceInterface::class, \App\Services\ImageService::class);
     }
 
     /**
