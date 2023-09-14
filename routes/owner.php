@@ -1,6 +1,5 @@
 <?php
 
-
 declare(strict_types=1);
 
 use App\Http\Controllers\Owner\Auth\AuthenticatedSessionController;
@@ -15,6 +14,9 @@ use App\Http\Controllers\Owner\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+// ---------------------------------------------------------------------------------------------------------------------
+// 店舗オーナー認証系 ルート定義
+// ---------------------------------------------------------------------------------------------------------------------
 Route::middleware('guest:owner')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');
@@ -38,7 +40,6 @@ Route::middleware('guest:owner')->group(function () {
     Route::post('reset-password', [NewPasswordController::class, 'store'])
         ->name('password.store');
 });
-
 Route::middleware('auth:owner')->group(function () {
     Route::get('verify-email', EmailVerificationPromptController::class)
         ->name('verification.notice');
@@ -62,7 +63,21 @@ Route::middleware('auth:owner')->group(function () {
         ->name('logout');
 });
 
-
+// ---------------------------------------------------------------------------------------------------------------------
+// 店舗オーナーダッシュボード画面
+// ---------------------------------------------------------------------------------------------------------------------
 Route::middleware(['auth:owner'])->get('/dashboard', function () {
     return Inertia::render('Owner/Dashboard');
 })->name('dashboard');
+
+// ---------------------------------------------------------------------------------------------------------------------
+// 画像（店舗 or 商品で使用） ルート定義
+// ---------------------------------------------------------------------------------------------------------------------
+Route::prefix('image')->middleware(['auth:owner'])->group(function () {
+    Route::get('create', App\Http\Actions\Owner\Image\ImageCreateAction::class)->name('image.create');
+    Route::delete('destroy/{id}', App\Http\Actions\Owner\Image\ImageDestroyAction::class)->name('image.destroy');
+    Route::get('edit/{id}', App\Http\Actions\Owner\Image\ImageEditAction::class)->name('image.edit');
+    Route::get('index', App\Http\Actions\Owner\Image\ImageIndexAction::class)->name('image.index');
+    Route::post('store', App\Http\Actions\Owner\Image\ImageStoreAction::class)->name('image.store');
+    Route::put('update', App\Http\Actions\Owner\Image\ImageUpdateAction::class)->name('image.update');
+});

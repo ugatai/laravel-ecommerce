@@ -18,7 +18,8 @@ final class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             OwnerSeeder::class,
             ExpiredOwnerSeeder::class,
-            CustomerSeeder::class
+            CustomerSeeder::class,
+            ImageSeeder::class
         ]);
     }
 }
