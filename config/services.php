@@ -33,4 +33,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    's3' => [
+        'buket' => env('AWS_BUCKET'),
+        'endpoint' => env('AWS_ENDPOINT')
+    ]
+
 ];
