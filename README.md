@@ -44,6 +44,7 @@
 - [react-dom * react dom ライブラリ](https://legacy.reactjs.org/docs/react-dom.html)
 - [tailwindcss * CSSライブラリ](https://tailwindcss.com/)
 - [uuid * uuid作成ライブラリ](https://www.npmjs.com/package/uuid)
+- [vitest * JSテストライブラリ](https://vitest.dev/)
 
 # Directory Structure
 
@@ -232,4 +233,13 @@ sail php artisan test --parallel --processes=3
 
 # profile
 sail php artisan test --profile
+```
+
+# Vitest
+
+#### run vitest:
+
+```sh
+# run
+sail npm run test
 ```
