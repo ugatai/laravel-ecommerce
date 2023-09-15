@@ -4,21 +4,23 @@ declare(strict_types=1);
 
 namespace App\Services\Impl;
 
+use App\Exceptions\ImageServiceException;
 use Illuminate\Http\UploadedFile;
 use Intervention\Image\Image;
 
 /**
- * Interface ImageServiceInterface
+ * Interface S3FileManagerInterface
  *
  * @package App\Services\Impl
  */
-interface ImageServiceInterface
+interface S3FileManagerServiceInterface
 {
     /**
      * @param string $path
-     * @return void
+     * @return bool
+     * @throws ImageServiceException
      */
-    public function deleteImageFromS3(string $path): void;
+    public function delete(string $path): bool;
 
     /**
      * @param UploadedFile $file
@@ -31,5 +33,5 @@ interface ImageServiceInterface
      * @param string $path
      * @return string
      */
-    public function uploadImageToS3(Image $image, string $path): string;
+    public function upload(Image $image, string $path): string;
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Services;
 
+use App\Exceptions\ImageServiceException;
 use App\Services\ImageService;
 use App\Services\Impl\ImageServiceInterface;
 use Illuminate\Http\UploadedFile;
@@ -13,7 +14,7 @@ use Tests\TestCase;
 
 class ImageServiceTest extends TestCase
 {
-    public ImageService $imageService;
+    public readonly ImageService $imageService;
 
     /**
      * @return void
@@ -26,24 +27,41 @@ class ImageServiceTest extends TestCase
         $this->imageService = $this->app[ImageServiceInterface::class];
     }
 
-    #[Test]
     /**
      * @return void
+     * @throws ImageServiceException
      */
+    #[Test]
     public function test_delete_image_from_s3(): void
     {
         $file = UploadedFile::fake()->image('test.jpg');
-        $path = Storage::disk('s3')->putFile('images/test/', $file);
-        $this->imageService
+        $path = Storage::disk('s3')->putFile('images/test', $file);
+        $result = $this->imageService
             ->deleteImageFromS3($path);
 
+        $this->assertTrue($result);
         Storage::disk('s3')->assertMissing($path);
     }
 
+    /**
+     * @return void
+     * @throws ImageServiceException
+     */
     #[Test]
+    public function test_delete_image_from_s3_with_non_existent_path(): void
+    {
+        $this->expectException(ImageServiceException::class);
+        $this->expectExceptionMessage("[Error]: Attempted to delete a non-existent file in s3 buket. path: image/test/non_existent.jpg");
+        $this->expectExceptionCode(404);
+
+        $this->imageService
+            ->deleteImageFromS3('image/test/non_existent.jpg');
+    }
+
     /**
      * @return void
      */
+    #[Test]
     public function test_resize_image_file(): void
     {
         $file = UploadedFile::fake()->image('test.jpg', 9999, 9999);
@@ -54,17 +72,17 @@ class ImageServiceTest extends TestCase
         $this->assertSame(1080, $resizedImage->height());
     }
 
-    #[Test]
     /**
      * @return void
      */
+    #[Test]
     public function test_upload_image_to_s3(): void
     {
         $file = UploadedFile::fake()->image('test.jpg');
         $resizedImage = $this->imageService
             ->resizeImageFile($file);
         $path = $this->imageService
-            ->uploadImageToS3($resizedImage, 'images/test/');
+            ->uploadImageToS3($resizedImage, 'images/test');
 
         Storage::disk('s3')->assertExists($path);
     }
