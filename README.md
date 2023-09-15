@@ -11,9 +11,9 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-# Laravel Ecommerce Application
+# Laravel Ecommerce Application 🛍
 
-### Environment
+### Environment 🛠
 
 - PHP: v8.1.22
 - Laravel: v10.20.0
@@ -21,7 +21,7 @@
 - React: v18.2.0
 - MySQL: v8.0
 
-### Add Composer Libraries
+### Add Composer Libraries 📕
 
 - [php-cs-fixer * コードフォーマッター](https://github.com/PHP-CS-Fixer/PHP-CS-Fixer)
 - [nunomaduro/larastan * 静的解析ツール](https://phpstan.org/user-guide/getting-started)
@@ -33,8 +33,10 @@
 - [bensampo/laravel-enum * 列挙型](https://github.com/BenSampo/laravel-enum)
 - [laravel/breeze * ログイン認証系](https://github.com/laravel/breeze)
 - [brianium/paratest * 並列テスト](https://packagist.org/packages/brianium/paratest)
+- [league/flysystem-aws-s3-v3 * s3ライブラリー](https://packagist.org/packages/league/flysystem-aws-s3-v3)
+- [intervention/image * 画像リサイズライブラリー](https://image.intervention.io/v2)
 
-### Add Node Modules
+### Add Node Modules 📗
 
 - [@inertiajs/react * inertia/reactライブラリ](https://www.npmjs.com/package/@inertiajs/react)
 - [@vitejs/plugin-react * vitejs/reactライブラリ](https://www.npmjs.com/package/@vitejs/plugin-react)
@@ -42,8 +44,9 @@
 - [react-dom * react dom ライブラリ](https://legacy.reactjs.org/docs/react-dom.html)
 - [tailwindcss * CSSライブラリ](https://tailwindcss.com/)
 - [uuid * uuid作成ライブラリ](https://www.npmjs.com/package/uuid)
+- [vitest * JSテストライブラリ](https://vitest.dev/)
 
-# Directory Structure
+# Directory Structure 📁
 
 ```
 .
@@ -99,11 +102,11 @@
 ├── vite.config.js              # Configuration file for Vite
 ```
 
-# Infrastructure
+# Infrastructure 🌐
 
 in preparation...
 
-# DB Structure
+# DB Structure ⎗
 
 <p align="center">
     <a href="https://ugawa-public.s3.ap-northeast-1.amazonaws.com/images/ecommerce/ecommerce.drawio.png">
@@ -111,7 +114,7 @@ in preparation...
     </a>
 </p>
 
-# Participation in Development
+# Participation in Development 🙋
 
 #### Clone this repo anywhere you want and move into the directory:
 
@@ -146,9 +149,9 @@ MAIL_FROM_NAME="${APP_NAME}"
 
 AWS_ACCESS_KEY_ID=
 AWS_SECRET_ACCESS_KEY=
-AWS_DEFAULT_REGION=ap-northeast-1
+AWS_DEFAULT_REGION=
 AWS_BUCKET=
-AWS_USE_PATH_STYLE_ENDPOINT=false
+AWS_URL=
 
 STRIPE_PUBLIC_KEY=
 STRIPE_SECRET_KEY=
@@ -217,7 +220,7 @@ setting file - phpstan.neon
 sail npm run dev
 ```
 
-# PHP Unit Tests
+# PHP Unit Tests ♻️
 
 #### run php unit tests:
 
@@ -230,4 +233,13 @@ sail php artisan test --parallel --processes=3
 
 # profile
 sail php artisan test --profile
+```
+
+# Vitest ♻️
+
+#### run vitest:
+
+```sh
+# run
+sail npm run test
 ```

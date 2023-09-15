@@ -2,6 +2,7 @@ import React from "react";
 import {Head, useForm, usePage} from '@inertiajs/react';
 
 import AuthenticatedLayout from '@/Layouts/AdminAuthenticatedLayout';
+import {FlashMessage} from "@/Components/FlashMessage/index.jsx";
 
 /**
  * @param auth
@@ -37,20 +38,7 @@ const Index = ({auth, owners}) => {
                                 Owner List<i className="fa-solid fa-user-tie ml-2"></i>
                             </div>
                         </header>
-                        {flash.info &&
-                            <div className="flex bg-green-100 rounded-lg p-4 my-2 text-sm text-green-700" role="alert">
-                                <div>
-                                    <i className="fa-solid fa-circle-info mr-2"></i>
-                                    <span className="font-medium">{flash.info}</span>
-                                </div>
-                            </div>}
-                        {flash.alert &&
-                            <div className="flex bg-red-100 rounded-lg p-4 my-2 text-sm text-red-700" role="alert">
-                                <div>
-                                    <i className="fa-solid fa-circle-info mr-2"></i>
-                                    <span className="font-medium">{flash.alert}</span>
-                                </div>
-                            </div>}
+                        <FlashMessage flash={flash}/>
                         <div className="table w-full p-2">
                             <table className="w-full border">
                                 <thead>
