@@ -4,34 +4,38 @@ declare(strict_types=1);
 
 namespace App\Services\Impl;
 
-use App\Exceptions\ImageServiceException;
+use App\Exceptions\S3StorageServiceException;
 use Illuminate\Http\UploadedFile;
 use Intervention\Image\Image;
 
 /**
- * Interface S3FileManagerInterface
+ * Interface S3StorageServiceInterface
  *
  * @package App\Services\Impl
  */
-interface S3FileManagerServiceInterface
+interface S3StorageServiceInterface
 {
     /**
      * @param string $path
      * @return bool
-     * @throws ImageServiceException
+     * @throws S3StorageServiceException
      */
     public function delete(string $path): bool;
 
     /**
+     * @note 画像ファイルのサイズを1920×1080に変更
      * @param UploadedFile $file
      * @return Image
+     * @throws S3StorageServiceException
      */
     public function resizeImageFile(UploadedFile $file): Image;
 
     /**
-     * @param Image $image
+     * @note ランダムなファイル名を生成してからS3ストレージへファイルをアップロード
      * @param string $path
+     * @param UploadedFile $file
      * @return string
+     * @throws S3StorageServiceException
      */
-    public function upload(Image $image, string $path): string;
+    public function upload(string $path, UploadedFile $file): string;
 }

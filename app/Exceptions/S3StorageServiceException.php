@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Support\Facades\Log;
 
 /**
- * Class ImageServiceException
+ * Class S3StorageServiceException
  *
  * @package App\Exceptions
  */
-final class ImageServiceException extends Exception
+final class S3StorageServiceException extends Exception
 {
     public readonly string $methodName;
 
@@ -24,7 +26,7 @@ final class ImageServiceException extends Exception
         $this->methodName = $methodName;
         $this->message = $message;
 
-        $errorMsg = "ImageService Method: {$this->methodName} Message: {$this->message}";
+        $errorMsg = "S3StorageService Method: {$this->methodName} Message: {$this->message}";
         parent::__construct($errorMsg, $statusCode);
     }
 
