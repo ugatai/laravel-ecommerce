@@ -109,15 +109,67 @@ export const OwnerSidebar = () => {
     const menus = [
         {
             id: 1,
-            title: 'Owner',
-            items: [{uuid: uuidv4(), action: 'List', route: 'owner.dashboard'}, {
+            title: 'Shop',
+            items: [{uuid: uuidv4(), action: 'List', route: 'owner.image.index'}, {
                 uuid: uuidv4(),
                 action: 'Create',
-                route: 'owner.dashboard'
+                route: 'owner.image.create'
             }]
         },
-        {id: 2, title: 'Contact', items: [{uuid: uuidv4(), action: 'List', route: 'owner.dashboard'}]},
-        {id: 3, title: 'Setting', items: [{uuid: uuidv4(), action: 'Edit', route: 'owner.dashboard'}]}
+        {
+            id: 2,
+            title: 'Image',
+            items: [{uuid: uuidv4(), action: 'List', route: 'owner.image.index'}, {
+                uuid: uuidv4(),
+                action: 'Create',
+                route: 'owner.image.create'
+            }]
+        },
+        {
+            id: 3,
+            title: 'Primary Category',
+            items: [{uuid: uuidv4(), action: 'List', route: 'owner.image.index'}, {
+                uuid: uuidv4(),
+                action: 'Create',
+                route: 'owner.image.create'
+            }]
+        },
+        {
+            id: 4,
+            title: 'Second Category',
+            items: [{uuid: uuidv4(), action: 'List', route: 'owner.image.index'}, {
+                uuid: uuidv4(),
+                action: 'Create',
+                route: 'owner.image.create'
+            }]
+        },
+        {
+            id: 5,
+            title: 'Product',
+            items: [{uuid: uuidv4(), action: 'List', route: 'owner.image.index'}, {
+                uuid: uuidv4(),
+                action: 'Create',
+                route: 'owner.image.create'
+            }]
+        },
+        {
+            id: 6,
+            title: 'Stock',
+            items: [{uuid: uuidv4(), action: 'List', route: 'owner.image.index'}, {
+                uuid: uuidv4(),
+                action: 'Create',
+                route: 'owner.image.create'
+            }]
+        },
+        {
+            id: 7,
+            title: 'Contact',
+            items: [{uuid: uuidv4(), action: 'List', route: 'owner.image.index'}, {
+                uuid: uuidv4(),
+                action: 'Create',
+                route: 'owner.image.create'
+            }]
+        },
     ];
 
     /**
@@ -126,12 +178,20 @@ export const OwnerSidebar = () => {
      */
     const getTitleIcon = (title) => {
         switch (title) {
-            case 'Admin':
-                return (<i className="fa-solid fa-user-astronaut mr-2"></i>);
+            case 'Image':
+                return (<i className="fa-regular fa-image mr-2"></i>);
+            case 'Shop':
+                return (<i className="fa-solid fa-shop mr-2"></i>);
+            case 'Primary Category':
+                return (<i className="fa-solid fa-icons mr-2"></i>);
+            case 'Second Category':
+                return (<i className="fa-solid fa-pen-ruler mr-2"></i>);
+            case 'Product':
+                return (<i className="fa-solid fa-lg fa-spray-can-sparkles mr-2"></i>);
+            case 'Stock':
+                return (<i className="fa-solid fa-cubes mr-2"></i>);
             case 'Contact':
                 return (<i className="fa-solid fa-envelope mr-2"></i>);
-            case 'Setting':
-                return (<i className="fa-solid fa-user-gear mr-2"></i>);
             default:
                 return (<i className="fa-solid fa-house　mr-2"></i>);
         }

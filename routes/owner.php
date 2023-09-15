@@ -79,5 +79,5 @@ Route::prefix('image')->middleware(['auth:owner'])->group(function () {
     Route::get('edit/{id}', App\Http\Actions\Owner\Image\ImageEditAction::class)->name('image.edit');
     Route::get('index', App\Http\Actions\Owner\Image\ImageIndexAction::class)->name('image.index');
     Route::post('store', App\Http\Actions\Owner\Image\ImageStoreAction::class)->name('image.store');
-    Route::put('update', App\Http\Actions\Owner\Image\ImageUpdateAction::class)->name('image.update');
+    Route::post('update', App\Http\Actions\Owner\Image\ImageUpdateAction::class)->name('image.update');
 });

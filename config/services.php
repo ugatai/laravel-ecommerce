@@ -35,7 +35,7 @@ return [
 
     's3' => [
         'buket' => env('AWS_BUCKET'),
-        'endpoint' => env('AWS_ENDPOINT')
+        'url' => env('AWS_S3_BUCKET_URL')
     ]
 
 ];

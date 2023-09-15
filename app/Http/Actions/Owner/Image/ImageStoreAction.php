@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace App\Http\Actions\Owner\Image;
 
+use App\Exceptions\S3StorageServiceException;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Owner\Image\ImageStoreRequest;
+use App\Models\Image;
+use App\Services\Impl\S3StorageServiceInterface;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 /**
  * Class ImageStoreAction
@@ -15,12 +18,30 @@ use Illuminate\Http\Request;
  */
 final class ImageStoreAction extends Controller
 {
+    public readonly S3StorageServiceInterface $s3StorageService;
+
     /**
-     * @param Request $request
-     * @return RedirectResponse
+     * @param S3StorageServiceInterface $s3StorageService
      */
-    public function __invoke(Request $request): RedirectResponse
+    public function __construct(S3StorageServiceInterface $s3StorageService)
     {
-        return redirect()->route('owner.dashboard');
+        $this->s3StorageService = $s3StorageService;
+    }
+
+    /**
+     * @param ImageStoreRequest $request
+     * @return RedirectResponse
+     * @throws S3StorageServiceException
+     */
+    public function __invoke(ImageStoreRequest $request): RedirectResponse
+    {
+        $attributes = $request->validated();
+        $attributes['file_path'] = $this->s3StorageService
+            ->upload('images/ecommerce', $attributes['image']);
+
+        Image::query()->create($attributes);
+
+        return redirect()->route('owner.image.index')
+            ->with(['info' => 'image created successfully!']);
     }
 }

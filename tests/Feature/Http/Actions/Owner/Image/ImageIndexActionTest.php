@@ -29,17 +29,17 @@ class ImageIndexActionTest extends TestCase
         $this->owner = Owner::query()->first();
     }
 
-    #[Test]
     /**
      * @return void
      */
+    #[Test]
     public function test_owner_index_page(): void
     {
         $response = $this->actingAs($this->owner, 'owner')
             ->get(route('owner.image.index'));
 
         $response->assertInertia(fn(AssertableInertia $page) => $page->component('Owner/Image/Index')
-            ->has('images')
+            ->has('chunkedImages')
         );
     }
 }

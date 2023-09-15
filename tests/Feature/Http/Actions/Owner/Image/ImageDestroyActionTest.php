@@ -27,19 +27,22 @@ class ImageDestroyActionTest extends TestCase
     {
         parent::setUp();
 
-        Storage::fake('s3');
         Artisan::call('db:seed', ['--class' => 'OwnerSeeder']);
-        Artisan::call('db:seed', ['--class' => 'ImageSeeder']);
+        Storage::fake('s3');
 
         $this->owner = Owner::query()->first();
-        $this->image = Image::query()->first();
+        $this->image = Image::query()->create([
+            'owner_id' => $this->owner->id,
+            'title' => 'test',
+            'file_path' => 'images/test/test.jpg'
+        ]);
     }
 
-    #[Test]
     /**
      * @return void
      * @throws JsonException
      */
+    #[Test]
     public function test_image_delete_action(): void
     {
         $response = $this->actingAs($this->owner, 'owner')
@@ -52,10 +55,10 @@ class ImageDestroyActionTest extends TestCase
         Storage::disk('s3')->assertMissing($this->image->file_path);
     }
 
-    #[Test]
     /**
      * @return void
      */
+    #[Test]
     public function test_image_delete_action_with_non_existent_id(): void
     {
         $nonExistentId = 9999;

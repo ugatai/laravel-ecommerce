@@ -67,8 +67,8 @@ final class S3StorageService implements S3StorageServiceInterface
 
         $resizedImage = $this->resizeImageFile($file);
 
-        Storage::disk('s3')->put($path . $fileName, (string)$resizedImage);
+        Storage::disk('s3')->put($path . $fileName, (string)$resizedImage, 'public');
 
-        return $path . $fileName;
+        return config('services.s3.url') . $path . $fileName;
     }
 }

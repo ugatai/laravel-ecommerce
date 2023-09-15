@@ -27,16 +27,19 @@ class ImageEditActionTest extends TestCase
         parent::setUp();
 
         Artisan::call('db:seed', ['--class' => 'OwnerSeeder']);
-        Artisan::call('db:seed', ['--class' => 'ImageSeeder']);
 
         $this->owner = Owner::query()->first();
-        $this->image = Image::query()->first();
+        $this->image = Image::query()->create([
+            'owner_id' => $this->owner->id,
+            'title' => 'test',
+            'file_path' => 'images/test/test.jpg'
+        ]);
     }
 
-    #[Test]
     /**
      * @return void
      */
+    #[Test]
     public function test_image_edit_page(): void
     {
         $response = $this->actingAs($this->owner, 'owner')
@@ -48,10 +51,10 @@ class ImageEditActionTest extends TestCase
         );
     }
 
-    #[Test]
     /**
      * @return void
      */
+    #[Test]
     public function test_image_edit_page_with_non_existent_id(): void
     {
         $nonExistentId = 9999;
