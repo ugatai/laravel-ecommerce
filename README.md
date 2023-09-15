@@ -11,9 +11,9 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-# Laravel Ecommerce Application
+# Laravel Ecommerce Application 🛍
 
-### Environment
+### Environment 🛠
 
 - PHP: v8.1.22
 - Laravel: v10.20.0
@@ -21,7 +21,7 @@
 - React: v18.2.0
 - MySQL: v8.0
 
-### Add Composer Libraries
+### Add Composer Libraries 📕
 
 - [php-cs-fixer * コードフォーマッター](https://github.com/PHP-CS-Fixer/PHP-CS-Fixer)
 - [nunomaduro/larastan * 静的解析ツール](https://phpstan.org/user-guide/getting-started)
@@ -36,7 +36,7 @@
 - [league/flysystem-aws-s3-v3 * s3ライブラリー](https://packagist.org/packages/league/flysystem-aws-s3-v3)
 - [intervention/image * 画像リサイズライブラリー](https://image.intervention.io/v2)
 
-### Add Node Modules
+### Add Node Modules 📗
 
 - [@inertiajs/react * inertia/reactライブラリ](https://www.npmjs.com/package/@inertiajs/react)
 - [@vitejs/plugin-react * vitejs/reactライブラリ](https://www.npmjs.com/package/@vitejs/plugin-react)
@@ -46,7 +46,7 @@
 - [uuid * uuid作成ライブラリ](https://www.npmjs.com/package/uuid)
 - [vitest * JSテストライブラリ](https://vitest.dev/)
 
-# Directory Structure
+# Directory Structure 📁
 
 ```
 .
@@ -102,11 +102,11 @@
 ├── vite.config.js              # Configuration file for Vite
 ```
 
-# Infrastructure
+# Infrastructure 🌐
 
 in preparation...
 
-# DB Structure
+# DB Structure ⎗
 
 <p align="center">
     <a href="https://ugawa-public.s3.ap-northeast-1.amazonaws.com/images/ecommerce/ecommerce.drawio.png">
@@ -114,7 +114,7 @@ in preparation...
     </a>
 </p>
 
-# Participation in Development
+# Participation in Development 🙋
 
 #### Clone this repo anywhere you want and move into the directory:
 
@@ -220,7 +220,7 @@ setting file - phpstan.neon
 sail npm run dev
 ```
 
-# PHP Unit Tests
+# PHP Unit Tests ♻️
 
 #### run php unit tests:
 
@@ -235,7 +235,7 @@ sail php artisan test --parallel --processes=3
 sail php artisan test --profile
 ```
 
-# Vitest
+# Vitest ♻️
 
 #### run vitest:
 
