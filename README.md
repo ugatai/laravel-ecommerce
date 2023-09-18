@@ -120,7 +120,11 @@
 
 # Infrastructure 🌐
 
-in preparation...
+<p align="center">
+    <a href="https://ugawa-public.s3.ap-northeast-1.amazonaws.com/images/ecommerce/infra.png">
+        <img src="https://ugawa-public.s3.ap-northeast-1.amazonaws.com/images/ecommerce/infra.png" alt="infra">
+    </a>
+</p>
 
 # DB Structure ⎗
 
