@@ -1,0 +1,125 @@
+name: PHP Checks
+
+on:
+  #  push:
+  #    branches:
+  #      - main
+  #      - master
+  #      - develop
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  php_checks:
+
+    name: PHP Checks (PHP ${{ matrix.php-versions }} on ${{ matrix.operating-system }})
+
+    runs-on: ${{ matrix.operating-system }}
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: hogeh0gePass&
+          MYSQL_DATABASE: test_db
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    strategy:
+      fail-fast: false
+      matrix:
+        operating-system: [ ubuntu-latest ]
+        php-versions: [ '8.1' ]
+
+    steps:
+
+      - name: Set working directory
+        run: echo "WORKING_DIRECTORY=src" >> $GITHUB_ENV
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 100
+          ref: ${{ github.head_ref }}
+
+      - name: Install jq
+        run: sudo apt-get install -y jq
+
+      - name: Get list of changed files
+        id: get-changed-files
+        run: |
+          PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
+          FILES=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                 "https://api.github.com/repos/${{ github.repository }}/pulls/$PR_NUMBER/files" | \
+                 jq -r '.[].filename' | paste -sd "," -)
+          echo "Changed files: $FILES"
+          echo "FILES=$FILES" >> $GITHUB_ENV
+
+      - name: Check for PHP files in the changes
+        id: check-php
+        run: |
+          echo "FILES=${FILES}"
+          if echo "${FILES}" | tr ',' '\n' | grep -qE '\.php$'; then
+            echo "::set-output name=contains_php::true"
+          else
+            echo "::set-output name=contains_php::false"
+          fi
+
+      - name: Copy .env
+        if: steps.check-php.outputs.contains_php == 'true'
+        run: php -r "file_exists('.env') || copy('.env.testing', '.env');"
+
+      - name: Setup PHP
+        if: steps.check-php.outputs.contains_php == 'true'
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          extensions: mbstring, dom, fileinfo, simplexml
+          coverage: xdebug
+
+      - name: Get composer cache directory
+        if: steps.check-php.outputs.contains_php == 'true'
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+
+      - name: Cache composer dependencies
+        if: steps.check-php.outputs.contains_php == 'true'
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Install Composer dependencies
+        if: steps.check-php.outputs.contains_php == 'true'
+        run: composer install --no-progress --prefer-dist --optimize-autoloader
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+
+      - name: Setup Database
+        if: steps.check-php.outputs.contains_php == 'true'
+        run: |
+          mysql -h 127.0.0.1 -u root -phogeh0gePass\& -e 'CREATE DATABASE IF NOT EXISTS test_db;'
+
+      - name: Setup DB Connection for PHPUnit
+        if: steps.check-php.outputs.contains_php == 'true'
+        run: |
+          echo "DB_HOST=127.0.0.1" >> $GITHUB_ENV
+          echo "DB_PORT=3306" >> $GITHUB_ENV
+          echo "DB_DATABASE=test_db" >> $GITHUB_ENV
+          echo "DB_USERNAME=root" >> $GITHUB_ENV
+          echo "DB_PASSWORD=hogeh0gePass&" >> $GITHUB_ENV
+
+      - name: Run PHPStan
+        if: steps.check-php.outputs.contains_php == 'true'
+        run: vendor/bin/phpstan --error-format=github --configuration=phpstan.neon
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+
+      - name: Run PHPUnit Tests
+        if: steps.check-php.outputs.contains_php == 'true'
+        run: vendor/bin/phpunit
+        working-directory: ${{ env.WORKING_DIRECTORY }}
