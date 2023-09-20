@@ -51,6 +51,7 @@
 - [brianium/paratest * 並列テスト](https://packagist.org/packages/brianium/paratest)
 - [league/flysystem-aws-s3-v3 * s3ライブラリー](https://packagist.org/packages/league/flysystem-aws-s3-v3)
 - [intervention/image * 画像リサイズライブラリー](https://image.intervention.io/v2)
+- [deployer/deployer * デプロイ用](https://github.com/deployphp/deployer)
 
 ### Add Node Modules 📗
 
@@ -66,6 +67,8 @@
 
 ```
 .
+├── .github/
+│   ├── workflows/              # Github Actions file
 ├── app/
 │   ├── Consts/                 # Definition files for constants
 │   ├── Enums/                  # Enumerated column value files for Eloquent models
@@ -96,8 +99,6 @@
 │   │   ├── Components/         # JSX Components files
 │   │   ├── Layouts/            # JSX Layouts files
 │   │   ├── Pages/              # JSX Pages files
-│   ├── lang/                   # Translation files
-│   ├── view/                   # Templates
 │      
 ├── routes/                     # Place each router here
 │   ├── api.php                 # Routing for external use
@@ -111,6 +112,7 @@
 ├── tools/
 │   ├── php-cs-fixer/           # Code formatting tool location
 │
+├── deploy.php                  # Configuration file to deployer
 ├── docker-compose.yml          # Configuration file to define and run multi-container Docker applications
 ├── .php-cs-fixer.dist.php      # Configuration file for php-cs-fixer
 ├── phpstan.neon                # Configuration file for phpstan
@@ -262,4 +264,18 @@ sail php artisan test --profile
 ```sh
 # run
 sail npm run test
+```
+
+# Deploy ️📲
+
+https://deployer.org/
+
+#### ※ Each environment file is required as a prerequisite
+
+```sh
+# Reflection on staging environment
+dep deploy dev
+
+# Reflection on production environment
+dep deploy prod
 ```
