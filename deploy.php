@@ -65,8 +65,8 @@ before('deploy:symlink', 'artisan:migrate');
 task('npm:run', function (): void {
     run('cd {{release_path}} && npm install');
     input()->getArgument('stage') === 'prod' ?
-        run('cd {{release_path}} && npm run production') :
-        run('cd {{release_path}} && npm run development');
+        run('cd {{release_path}} && npm run prod') :
+        run('cd {{release_path}} && npm run dev');
 });
 
 after('artisan:migrate', 'npm:run');
