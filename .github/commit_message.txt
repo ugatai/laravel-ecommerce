@@ -1,0 +1,8 @@
+# ==== Commit Messages ====
+ここに入れます
+
+:emoji: feat: feature/dev-adjust#40 開発ブランチ調整
+## 対応内容
+- 「xxx」テキスト「zzzz」に変更
+
+# ==== Commit Messages(Template) ====
