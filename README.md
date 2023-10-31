@@ -1,14 +1,13 @@
 <p align="center">
-    <a href="https://laravel.com" target="_blank">
-        <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo">
-    </a>
+    <img src="./docs/logo.png" width="400" alt="logo">
 </p>
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+<img src="https://img.shields.io/badge/PHP-8.1-blue.svg?logo=php&style=flat" alt="PHP 8.1">
+<img src="https://img.shields.io/badge/Laravel-10.x-red.svg?logo=laravel&style=flat" alt="Laravel 10.x">
+<img src="https://img.shields.io/badge/Node.js-18.x-green.svg?logo=node.js&style=flat" alt="Node.js 18.x">
+<img src="https://img.shields.io/badge/React-18.x-blue.svg?logo=react&style=flat" alt="React 18.x">
+<img src="https://img.shields.io/badge/MySQL-8.0-blue.svg?logo=mysql&style=flat" alt="MySQL 8.0">
 </p>
 
 # Laravel Ecommerce Application 🛍
@@ -16,26 +15,14 @@
 ### Client Sample Page 🛒
 
 <p align="center">
-    <a href="https://ugawa-public.s3.ap-northeast-1.amazonaws.com/images/ecommerce/client.png">
-        <img src="https://ugawa-public.s3.ap-northeast-1.amazonaws.com/images/ecommerce/client.png" alt="Client Page">
-    </a>
+    <img src="./docs/client-sample.png" alt="">
 </p>
 
 ### Shop Owner Management Sample Page 📊
 
 <p align="center">
-    <a href="https://ugawa-public.s3.ap-northeast-1.amazonaws.com/images/ecommerce/admin.png">
-        <img src="https://ugawa-public.s3.ap-northeast-1.amazonaws.com/images/ecommerce/admin.png" alt="Client Page">
-    </a>
+    <img src="./docs/admin-sample.png" alt="">
 </p>
-
-### Environment 🛠
-
-- PHP: v8.1.22
-- Laravel: v10.20.0
-- Node: v18.17.1
-- React: v18.2.0
-- MySQL: v8.0
 
 ### Add Composer Libraries 📕
 
@@ -123,17 +110,13 @@
 # Infrastructure 🌐
 
 <p align="center">
-    <a href="https://ugawa-public.s3.ap-northeast-1.amazonaws.com/images/ecommerce/infra.png">
-        <img src="https://ugawa-public.s3.ap-northeast-1.amazonaws.com/images/ecommerce/infra.png" alt="infra">
-    </a>
+    <img src="./docs/infrastructure.png" alt="">
 </p>
 
 # DB Structure ⎗
 
 <p align="center">
-    <a href="https://ugawa-public.s3.ap-northeast-1.amazonaws.com/images/ecommerce/ecommerce.drawio.png">
-        <img src="https://ugawa-public.s3.ap-northeast-1.amazonaws.com/images/ecommerce/ecommerce.drawio.png" alt="ER">
-    </a>
+    <img src="./docs/er.drawio.png" alt="">
 </p>
 
 # Participation in Development 🙋
