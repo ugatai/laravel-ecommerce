@@ -6,6 +6,8 @@
 <img src="https://img.shields.io/badge/PHP-8.1-blue.svg?logo=php&style=flat" alt="PHP 8.1">
 <img src="https://img.shields.io/badge/Laravel-10.x-red.svg?logo=laravel&style=flat" alt="Laravel 10.x">
 <img src="https://img.shields.io/badge/Node.js-18.x-green.svg?logo=node.js&style=flat" alt="Node.js 18.x">
+<img src="https://img.shields.io/badge/TypeScript-4.x-blue.svg?logo=typescript&style=flat" alt="TypeScript 4.x">
+
 <img src="https://img.shields.io/badge/React-18.x-blue.svg?logo=react&style=flat" alt="React 18.x">
 <img src="https://img.shields.io/badge/MySQL-8.0-blue.svg?logo=mysql&style=flat" alt="MySQL 8.0">
 </p>
