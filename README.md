@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="./docs/logo.png" width="400" alt="logo">
+    <img src="./docs/logo.png" width="300" alt="logo">
 </p>
 
 <p align="center">
@@ -14,19 +14,22 @@
 
 # Laravel Ecommerce Application 🛍
 
-### Client Sample Page 🛒
+### Client Sample Page
 
 <p align="center">
     <img src="./docs/client-sample.png" alt="">
 </p>
 
-### Shop Owner Management Sample Page 📊
+### Shop Owner Management Sample Page
 
 <p align="center">
     <img src="./docs/admin-sample.png" alt="">
 </p>
 
-### Add Composer Libraries 📕
+### Add Composer Libraries
+
+<details>
+  <summary>Composer library list</summary>
 
 - [php-cs-fixer * コードフォーマッター](https://github.com/PHP-CS-Fixer/PHP-CS-Fixer)
 - [nunomaduro/larastan * 静的解析ツール](https://phpstan.org/user-guide/getting-started)
@@ -42,7 +45,12 @@
 - [intervention/image * 画像リサイズライブラリー](https://image.intervention.io/v2)
 - [deployer/deployer * デプロイ用](https://github.com/deployphp/deployer)
 
-### Add Node Modules 📗
+</details>
+
+### Add Node Modules
+
+<details>
+  <summary>Node module list</summary>
 
 - [@inertiajs/react * inertia/reactライブラリ](https://www.npmjs.com/package/@inertiajs/react)
 - [@vitejs/plugin-react * vitejs/reactライブラリ](https://www.npmjs.com/package/@vitejs/plugin-react)
@@ -52,12 +60,15 @@
 - [uuid * uuid作成ライブラリ](https://www.npmjs.com/package/uuid)
 - [vitest * JSテストライブラリ](https://vitest.dev/)
 
+</details>
+
 # Directory Structure 📁
 
 ```
 .
 ├── .github/
 │   ├── workflows/              # Github Actions file
+
 ├── app/
 │   ├── Consts/                 # Definition files for constants
 │   ├── Enums/                  # Enumerated column value files for Eloquent models
@@ -75,6 +86,7 @@
 │   ├── Services/               # Service classes location
 │   │   ├── Impl/               # Interfaces for service classes
 │   │
+
 ├── config/                     # Store application configuration files
 │   └── ...
 ├── ...
@@ -82,25 +94,29 @@
 │    ├── ...
 │    └── ...
 │
+
 ├── resources/                  # Store templates and translation files
 │   ├── css/                    # CSS files
 │   ├── js/                     # JSX files
 │   │   ├── Components/         # JSX Components files
 │   │   ├── Layouts/            # JSX Layouts files
 │   │   ├── Pages/              # JSX Pages files
-│      
+│     
+ 
 ├── routes/                     # Place each router here
 │   ├── api.php                 # Routing for external use
 │   ├── admin.php               # Admin User routing
 │   ├── owner.php               # Owner User routing
 │   ├── web.php                 # Customer User routing
 │
+
 ├── tests/
 │   ├── Feature/                # Tests for single controllers
 │   ├── Unit/                   # Method-level tests for service classes
 ├── tools/
 │   ├── php-cs-fixer/           # Code formatting tool location
 │
+
 ├── deploy.php                  # Configuration file to deployer
 ├── docker-compose.yml          # Configuration file to define and run multi-container Docker applications
 ├── .php-cs-fixer.dist.php      # Configuration file for php-cs-fixer
@@ -109,19 +125,19 @@
 ├── vite.config.js              # Configuration file for Vite
 ```
 
-# Infrastructure 🌐
+# Infrastructure
 
 <p align="center">
-    <img src="./docs/infrastructure.png" alt="">
+    <img src="./docs/infrastructure.png" width="550" alt="infra">
 </p>
 
-# DB Structure ⎗
+# DB Structure
 
 <p align="center">
-    <img src="./docs/er.drawio.png" alt="">
+    <img src="./docs/er.drawio.png" width="550" alt="er">
 </p>
 
-# Participation in Development 🙋
+# Participation in Project
 
 #### Clone this repo anywhere you want and move into the directory:
 
@@ -138,22 +154,6 @@ cp .env.example .env
 ### `.env`
 
 ```dotenv
-DB_CONNECTION=mysql
-DB_HOST=mysql
-DB_PORT=3306
-DB_DATABASE=laravel
-DB_USERNAME=sail
-DB_PASSWORD=password
-
-MAIL_MAILER=smtp
-MAIL_HOST=mailpit
-MAIL_PORT=1025
-MAIL_USERNAME=null
-MAIL_PASSWORD=null
-MAIL_ENCRYPTION=null
-MAIL_FROM_ADDRESS="hello@example.com"
-MAIL_FROM_NAME="${APP_NAME}"
-
 AWS_ACCESS_KEY_ID=
 AWS_SECRET_ACCESS_KEY=
 AWS_DEFAULT_REGION=
@@ -163,6 +163,8 @@ AWS_URL=
 STRIPE_PUBLIC_KEY=
 STRIPE_SECRET_KEY=
 ```
+
+# Command
 
 ### `Laravel Sail`
 
@@ -184,16 +186,17 @@ sail shell
 sail stop
 ```
 
-You can start things up again with `docker compose up` and unlike the first
+You can start things up again with `docker compose up -d` and unlike the first
 time it should only take seconds.
 
-### `Installing Dependent Packages`
-
 ```sh
+# Installing dependent packages
 sail composer install
 sail npm install
-
+# Run migration and seed
 sail php artisan php migrate:refresh --seed
+# Compile jsx and sass files
+sail npm run dev
 ```
 
 ### `php-cs-fixer`
@@ -203,7 +206,6 @@ setting file - .php-cs-fixer.dist.php
 ```sh
 # display diff code
 ./tools/php-cs-fixer/vendor/bin/php-cs-fixer fix -v --diff --dry-run
-
 # run auto formatting
 ./tools/php-cs-fixer/vendor/bin/php-cs-fixer fix -v --diff
 ```
@@ -215,52 +217,34 @@ setting file - phpstan.neon
 ```sh
 # run
 ./vendor/bin/phpstan analyse --memory-limit=1G
-
 # generate base file if error base_file
 ./vendor/bin/phpstan analyse --generate-baseline
 ```
 
-### `Compile JSX and Sass files`
-
-```sh
-# run
-sail npm run dev
-```
-
-# PHP Unit Tests ♻️
-
-#### run php unit tests:
+### `php unit`
 
 ```sh
 # keep coverage 60%
 sail php artisan test --coverage --env=testing # --min=60 
-
 # parallel
 sail php artisan test --parallel --processes=3
-
 # profile
 sail php artisan test --profile
 ```
 
-# Vitest ♻️
-
-#### run vitest:
+### `vitest`
 
 ```sh
-# run
 sail npm run test
 ```
 
-# Deploy ️📲
-
-https://deployer.org/
+### `Deploy`
 
 #### ※ Each environment file is required as a prerequisite
 
 ```sh
 # Reflection on staging environment
 dep deploy dev
-
 # Reflection on production environment
 dep deploy prod
 ```
