@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="./docs/logo.png" width="300" alt="logo">
+    <img src="./docs/logo.png" width="400" alt="logo">
 </p>
 
 <p align="center">
@@ -12,10 +12,10 @@
 
 # Laravel Ecommerce Application 🛍
 
-### Composer
+### Composer 🤵🏻‍
 
 <details>
-  <summary>Composer library list</summary>
+  <summary>list</summary>
 
 - [php-cs-fixer * コードフォーマッター](https://github.com/PHP-CS-Fixer/PHP-CS-Fixer)
 - [nunomaduro/larastan * 静的解析ツール](https://phpstan.org/user-guide/getting-started)
@@ -33,10 +33,10 @@
 
 </details>
 
-### Node
+### Node 📗
 
 <details>
-  <summary>Node module list</summary>
+  <summary>list</summary>
 
 - [@inertiajs/react * inertia/reactライブラリ](https://www.npmjs.com/package/@inertiajs/react)
 - [@vitejs/plugin-react * vitejs/reactライブラリ](https://www.npmjs.com/package/@vitejs/plugin-react)
@@ -81,43 +81,34 @@ creating...
 │   │
 │   ├── Services/               # Service classes location
 │   │   ├── Impl/               # Interfaces for service classes
-│   │
 
 ├── config/                     # Store application configuration files
 │   └── ...
-├── ...
-│    ├── ...
-│    ├── ...
-│    └── ...
-│
 
 ├── resources/                  # Store templates and translation files
 │   ├── css/                    # CSS files
 │   ├── js/                     # JSX files
 │   │   ├── Components/         # JSX Components files
 │   │   ├── Layouts/            # JSX Layouts files
-│   │   ├── Pages/              # JSX Pages files
-│     
+│   │   ├── Pages/              # JSX Pages files  
  
 ├── routes/                     # Place each router here
 │   ├── api.php                 # Routing for external use
 │   ├── admin.php               # Admin User routing
 │   ├── owner.php               # Owner User routing
 │   ├── web.php                 # Customer User routing
-│
 
 ├── tests/
 │   ├── Feature/                # Tests for single controllers
 │   ├── Unit/                   # Method-level tests for service classes
+
 ├── tools/
 │   ├── php-cs-fixer/           # Code formatting tool location
-│
 
 ├── deploy.php                  # Configuration file to deployer
 ├── docker-compose.yml          # Configuration file to define and run multi-container Docker applications
 ├── .php-cs-fixer.dist.php      # Configuration file for php-cs-fixer
 ├── phpstan.neon                # Configuration file for phpstan
-├── tsconfig.json               # Configuration file for TypeScript
 ├── vite.config.js              # Configuration file for Vite
 ```
 
@@ -137,7 +128,7 @@ branch name : `feature/issue#1` or `fix/issue#1`
 #### Clone this repo anywhere you want and move into the directory:
 
 ```sh
-git clone https://github.com/taisei-ugawa-climber/laravel-ecommerce.git
+git clone https://github.com/ugatai/laravel-ecommerce.git
 ```
 
 #### Copy an example .env file because the real one is git ignored:
@@ -159,7 +150,7 @@ STRIPE_PUBLIC_KEY=hogehoge
 STRIPE_SECRET_KEY=hogehoge
 ```
 
-# Command
+## Command
 
 ### `Laravel Sail`
 
@@ -245,8 +236,6 @@ sail npm run test
 ```
 
 ### `Deploy`
-
-#### ※ Each environment file is required as a prerequisite
 
 ```sh
 # Reflection on staging environment
